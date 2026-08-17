@@ -1,9 +1,17 @@
+using ControleDeContatos;        // Ou a pasta onde está o BancoContext
+using ControleDeContatos.Repositorio;   // Onde estão a interface e o repositório
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<BancoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
+builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
