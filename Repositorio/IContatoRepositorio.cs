@@ -11,6 +11,7 @@ namespace ControleDeContatos.Repositorio
 
         ContatoModel Adicionar(ContatoModel contato);
         ContatoModel Atualizar(ContatoModel contato);
+        ContatoModel Apagar(ContatoModel contato);
 
     }
 }

@@ -13,14 +13,16 @@ namespace ControleDeContatos.Repositorio
         }
         public List<ContatoModel> BuscarTodos()
         {
-            return _bancoContext.Contatos.ToList();
+            return _bancoContext.Contatos.OrderBy(x => x.Id).ToList();
         }
         public ContatoModel Adicionar(ContatoModel contato)
         {
             //gravar no banco de dados
+          
             _bancoContext.Contatos.Add(contato);
             _bancoContext.SaveChanges();
             return contato;
+
 
         }
 
@@ -44,6 +46,13 @@ namespace ControleDeContatos.Repositorio
             _bancoContext.SaveChanges();
 
             return contatoDb;
+        }
+
+        public ContatoModel Apagar(ContatoModel contato)
+        {
+            _bancoContext.Contatos.Remove(contato);
+            _bancoContext.SaveChanges();
+            return contato;
         }
     }
 }

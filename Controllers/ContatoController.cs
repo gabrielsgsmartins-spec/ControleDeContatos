@@ -28,19 +28,37 @@ namespace ControleDeContatos.Controllers
             return View(contatoModel);
 
         }
-        public IActionResult ApagarConfirmacao()
+        public IActionResult ApagarConfirmacao(int id)
         {
-            return View();
+            var contato = _contatoRepositorio.ListarPorId(id);
+
+            if (contato == null)
+                return NotFound();
+
+            return View(contato);
         }
+
+
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
             _contatoRepositorio.Adicionar(contato);
             return RedirectToAction("Index");
         }
+        public IActionResult Apagar(int id)
+        {
+            var contato = _contatoRepositorio.ListarPorId(id);
+
+            if (contato == null)
+                return NotFound();
+
+            _contatoRepositorio.Apagar(contato);
+
+            return RedirectToAction("Index");
+        }
         public IActionResult Alterar(ContatoModel contato)
         {
-            _contatoRepositorio.Adicionar(contato);
+            _contatoRepositorio.Atualizar(contato);
             return RedirectToAction("Index");
         }
     }

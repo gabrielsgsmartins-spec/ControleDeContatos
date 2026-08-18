@@ -3,6 +3,9 @@
     ViewData["Title"] = "Editar Contato";
 }
 <form asp-controller="Contato" asp-action="Alterar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+    
     <div class="form-group">
         <label for="Nome">Nome </label>
         <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do contato">
