@@ -30,7 +30,6 @@ namespace ControleDeContatos.Repositorio
         public UsuarioModel ListarPorId(int id)
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);
-
         }
 
         public UsuarioModel Atualizar(UsuarioModel usuario)
