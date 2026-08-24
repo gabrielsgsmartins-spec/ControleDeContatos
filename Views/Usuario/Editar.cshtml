@@ -2,13 +2,13 @@
 @using ControleDeContatos.Enums
 
 @{
-    ViewData["Title"] = "Criar Usuario";
+    ViewData["Title"] = "Editar Usuario";
 }
 
     <h1 class="display-4">Cadastrar Usuário</h1>
-<form asp-controller="Usuario" asp-action="Adicionar" method="post">
+<form asp-controller="Usuario" asp-action="Editar" method="post">
 
-
+<input type= "hidden" asp-for="Id" />
     <div class="form-group">
         <label asp-for="Nome">Nome</label>
         <input type="text"
@@ -42,17 +42,11 @@
 
     </div>
 
-    <div class="form-group">
-        <label for="nome" class="form-label">Senha</label>
-        <input type="text" asp-for="Senha" class="form-control" placeholder="Digite a senha do usuário">
-        @Html.ValidationMessageFor(x => x.Senha)
-        </div>
-
     <form asp-controller="Usuario" asp-action="Index" method="post">
 
 
         <button type="submit" class="btn btn-primary btn-block">
-            Adicionar
+            Editar
         </button>
 
     </form>

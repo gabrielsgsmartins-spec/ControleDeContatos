@@ -52,17 +52,20 @@ namespace ControleDeContatos.Repositorio
             return usuarioDb;
         }
 
-        public UsuarioModel Apagar(UsuarioModel usuario)
+        public bool Apagar(int id)
         {
-            _bancoContext.Usuarios.Remove(usuario);
+            UsuarioModel usuarioDb = ListarPorId(id);
+
+            if (usuarioDb == null) throw new System.Exception("Houve um erro na atualização do usuario");
+
+            _bancoContext.Usuarios.Remove(usuarioDb);
             _bancoContext.SaveChanges();
-            return usuario;
+
+
+            return true;
+
         }
     }
 
-    public interface IUsuarioRepositorio
-    {
-        UsuarioModel Adicionar(UsuarioModel usuario);
-        List<UsuarioModel> BuscarTodos();
-    }
+
 }
