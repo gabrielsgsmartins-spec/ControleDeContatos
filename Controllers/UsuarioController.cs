@@ -25,6 +25,15 @@ namespace ControleDeContatos.Controllers
             return View();
 
         }
+        public IActionResult ApagarConfirmacao(int id)
+        {
+            var usuario = _usuarioRepositorio.ListarPorId(id);
+
+            if (usuario == null)
+                return NotFound();
+
+            return View(usuario);
+        }
         [HttpPost]
         public IActionResult Adicionar(UsuarioModel usuario)
         {
