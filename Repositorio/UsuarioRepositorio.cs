@@ -32,7 +32,7 @@ namespace ControleDeContatos.Repositorio
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);
         }
 
-        public UsuarioModel Atualizar(UsuarioModel usuario)
+        public UsuarioModel Editar(UsuarioModel usuario)
         {
             UsuarioModel usuarioDb = ListarPorId(usuario.Id);
 
@@ -63,6 +63,12 @@ namespace ControleDeContatos.Repositorio
 
 
             return true;
+
+        }
+
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
 
         }
     }

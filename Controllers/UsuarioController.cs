@@ -25,12 +25,7 @@ namespace ControleDeContatos.Controllers
             return View();
 
         }
-        public IActionResult Editar(int id)
-        {
-
-            UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
-            return View(usuario);
-        }
+     
         public IActionResult ApagarConfirmacao(int id)
         {
             UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
@@ -100,7 +95,7 @@ namespace ControleDeContatos.Controllers
                         Email = usuarioSemSenhaModel.Email,
                     };
 
-                    usuario = _usuarioRepositorio.Atualizar(usuario);
+                    usuario = _usuarioRepositorio.Editar(usuario);
                     TempData["MensagemSucesso"] = "Usuario alterado com sucesso!";
                     return RedirectToAction("Index");
                 }

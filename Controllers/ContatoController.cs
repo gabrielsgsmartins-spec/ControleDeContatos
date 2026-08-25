@@ -61,6 +61,7 @@ namespace ControleDeContatos.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu usuario, tente novamente, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
+
         }
 
         public IActionResult Apagar(int id)
