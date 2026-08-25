@@ -1,6 +1,9 @@
 using ControleDeContatos;        // Ou a pasta onde está o BancoContext
-using ControleDeContatos.Repositorio;   // Onde estão a interface e o repositório
+using ControleDeContatos.Controllers;
+using ControleDeContatos.Helper;
+using ControleDeContatos.Repositorio;  
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +14,22 @@ builder.Services.AddDbContext<BancoContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DataBase")));
 
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+
+
 builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<Isessao, Sessao>();
+
+
+builder.Services.AddSession(o =>
+{
+    o.Cookie.HttpOnly = true;
+    o.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -27,6 +44,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseSession(); 
 
 app.UseAuthorization();
 
