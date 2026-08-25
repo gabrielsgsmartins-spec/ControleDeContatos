@@ -8,7 +8,7 @@ namespace ControleDeContatos.Helper
 {
     public class Sessao : Isessao
     {
-            private readonly IHttpContextAccessor? _httpContext;
+        private readonly IHttpContextAccessor? _httpContext;
 
         public Sessao(IHttpContextAccessor httpContext)
         {
@@ -16,7 +16,7 @@ namespace ControleDeContatos.Helper
         }
         public UsuarioModel BuscarSessaoUsuario()
         {
-string sessaoUsuario = _httpContext.HttpContext.Session.GetString("IdUsuarioLogado");
+            string sessaoUsuario = _httpContext.HttpContext.Session.GetString("IdUsuarioLogado");
             if (string.IsNullOrEmpty(sessaoUsuario))
             {
                 return null;
@@ -27,7 +27,8 @@ string sessaoUsuario = _httpContext.HttpContext.Session.GetString("IdUsuarioLoga
         public void CriarSessaoUsuario(UsuarioModel usuario)
         {
             string json = JsonSerializer.Serialize(usuario);
-            _httpContext.HttpContext.Session.SetString("IdUsuarioLogado", usuario.Id.ToString());
+
+            _httpContext.HttpContext.Session.SetString("IdUsuarioLogado", json);
         }
 
         public void RemoverSessaoUsuario(UsuarioModel usuario)
