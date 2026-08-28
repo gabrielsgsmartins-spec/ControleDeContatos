@@ -1,8 +1,10 @@
-﻿using ControleDeContatos.Models;
-using System.Text.Json;
+﻿using ControleDeContatos.Controllers;
+using ControleDeContatos.Models;
 using ControleDeContatos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
-using ControleDeContatos.Controllers;
+using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ControleDeContatos.Helper
 {
@@ -21,14 +23,14 @@ namespace ControleDeContatos.Helper
             {
                 return null;
             }
-            return JsonSerializer.Deserialize<UsuarioModel>(sessaoUsuario);
+            return JsonConvert.DeserializeObject<UsuarioModel>(sessaoUsuario);
         }
 
         public void CriarSessaoUsuario(UsuarioModel usuario)
         {
-            string json = JsonSerializer.Serialize(usuario);
+            string valor = JsonConvert.SerializeObject(usuario);
 
-            _httpContext.HttpContext.Session.SetString("IdUsuarioLogado", json);
+            _httpContext.HttpContext.Session.SetString("IdUsuarioLogado", valor);
         }
 
         public void RemoverSessaoUsuario(UsuarioModel usuario)

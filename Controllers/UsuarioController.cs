@@ -67,7 +67,7 @@ namespace ControleDeContatos.Controllers
                     usuario = _usuarioRepositorio.Adicionar(usuario);
 
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 return View(usuario);
