@@ -68,3 +68,5 @@ namespace ControleDeContatos.Controllers
                 return RedirectToAction("Index");
             }
         }
+    }
+}
